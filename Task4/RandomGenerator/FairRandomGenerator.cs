@@ -4,11 +4,11 @@ using Task4;
 using Task4.UserInteractions;
 namespace Task4.RandomGenerator
 {
-    public class PFCCSRandomGen : IRandomNumberService
+    public class FairRandomGenerator : IRandomNumberService
     {
         private IUserInterface _ui;
 
-        public PFCCSRandomGen()
+        public FairRandomGenerator()
         {
             _ui = new ConsoleUI();
         }

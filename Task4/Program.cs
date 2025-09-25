@@ -7,7 +7,7 @@ if (!GameConfigurator.ValidateArgs(args)) return;
 Console.WriteLine($"Boxes count: {GameConfigurator.BoxesCount}");
 Console.WriteLine($"Morty implementation path: {GameConfigurator.MortyImplementationPath}");
 
-IRandomNumberService randomGenerator = new PFCCSRandomGen();
+IRandomNumberService randomGenerator = new FairRandomGenerator();
 
 GameCore game = new GameCore(randomGenerator, new ConsoleUI());
 game.StartGame();
