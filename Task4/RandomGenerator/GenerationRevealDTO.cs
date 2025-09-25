@@ -6,6 +6,8 @@ namespace Task4.RandomGenerator
         public int RickNumber { get; set; }
 
         public byte[]? SecretKey { get; set; }
+
+        public int MaxExclusive { get; set; }
         public int ResultNumber { get; set; }
     }
 }

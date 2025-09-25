@@ -12,3 +12,4 @@ D:\Development projects\ITRA\task4\Task4\obj\Debug\net9.0\refint\Task4.dll
 D:\Development projects\ITRA\task4\Task4\obj\Debug\net9.0\Task4.pdb
 D:\Development projects\ITRA\task4\Task4\obj\Debug\net9.0\Task4.genruntimeconfig.cache
 D:\Development projects\ITRA\task4\Task4\obj\Debug\net9.0\ref\Task4.dll
+D:\Development projects\ITRA\task4\Task4\obj\Debug\net9.0\Task4.sourcelink.json
