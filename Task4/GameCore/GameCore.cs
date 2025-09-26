@@ -96,42 +96,6 @@ namespace Task4.GameCore
         }
 
         /// <summary>
-        /// Reveals all the rounds information: Morty number, Rick number, secret key and result number.
-        /// </summary>
-        public void Reveal()
-        {
-            for (int i = 1; i <= this.roundGenerations.Count; i++)
-            {
-                var round = roundGenerations[i - 1];
-
-                string numEnding = i == 1 ? "st" : i == 2 ? "nd" : i == 3 ? "rd" : "th";
-
-                this.ui.DisplayMessage($"Hm, my {i}{numEnding} random number is {round.MortyNumber}..");
-                this.ui.DisplayMessage($"KEY{i}={BitConverter.ToString(round.SecretKey!).Replace("-", "").ToLower()}");
-                this.ui.DisplayMessage($"So, the first fair number is ({round.MortyNumber} + {round.RickNumber}) % {round.MaxExclusive} = {round.ResultNumber}..");
-            }
-        }
-
-        /// <summary>
-        /// This method computes and displays the round results and determines the winner.
-        /// </summary>
-        public void ComputeResults()
-        {
-            this.ui.DisplayMessage($"Your portal gun wa-a-as... in the box {this.boxWithGun}.");
-            this.ui.DisplayMessage($"Your final guess was {this.rickFinalGuess}.");
-
-            if (this.rickFinalGuess == this.boxWithGun)
-            {
-                isRickWinner = true;
-                this.ui.DisplayMessage(this.config.MortyInstance.Messages.RickWinner);
-            }
-            else
-            {
-                this.ui.DisplayMessage(this.config.MortyInstance.Messages.RickLoser);
-            }
-        }
-
-        /// <summary>
         /// This method is called by Morty to end the round.
         /// </summary>
         public void EndRound()
@@ -159,9 +123,45 @@ namespace Task4.GameCore
         }
 
         /// <summary>
+        /// Reveals all the rounds information: Morty number, Rick number, secret key and result number.
+        /// </summary>
+        private void Reveal()
+        {
+            for (int i = 1; i <= this.roundGenerations.Count; i++)
+            {
+                var round = roundGenerations[i - 1];
+
+                string numEnding = i == 1 ? "st" : i == 2 ? "nd" : i == 3 ? "rd" : "th";
+
+                this.ui.DisplayMessage($"Hm, my {i}{numEnding} random number is {round.MortyNumber}..");
+                this.ui.DisplayMessage($"KEY{i}={BitConverter.ToString(round.SecretKey!).Replace("-", "").ToLower()}");
+                this.ui.DisplayMessage($"So, the first fair number is ({round.MortyNumber} + {round.RickNumber}) % {round.MaxExclusive} = {round.ResultNumber}..");
+            }
+        }
+
+        /// <summary>
+        /// This method computes and displays the round results and determines the winner.
+        /// </summary>
+        private void ComputeResults()
+        {
+            this.ui.DisplayMessage($"Your portal gun wa-a-as... in the box {this.boxWithGun}.");
+            this.ui.DisplayMessage($"Your final guess was {this.rickFinalGuess}.");
+
+            if (this.rickFinalGuess == this.boxWithGun)
+            {
+                isRickWinner = true;
+                this.ui.DisplayMessage(this.config.MortyInstance.Messages.RickWinner);
+            }
+            else
+            {
+                this.ui.DisplayMessage(this.config.MortyInstance.Messages.RickLoser);
+            }
+        }
+
+        /// <summary>
         /// This method is used to restart the game.
         /// </summary>
-        public void RestartRound()
+        private void RestartRound()
         {
             this.roundGenerations.Clear();
             this.isSwitching = false;
