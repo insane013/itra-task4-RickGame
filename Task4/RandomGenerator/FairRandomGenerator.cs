@@ -6,6 +6,7 @@ namespace Task4.RandomGenerator
 {
     public class FairRandomGenerator : IRandomNumberService
     {
+        private const int KeySizeInBytes = 32;
         private IUserInterface _ui;
 
         public FairRandomGenerator()
@@ -29,7 +30,7 @@ namespace Task4.RandomGenerator
 
         public byte[] GenerateSecretKey()
         {
-            byte[] key = RandomNumberGenerator.GetBytes(32);
+            byte[] key = RandomNumberGenerator.GetBytes(KeySizeInBytes);
             return key;
         }
     }
