@@ -6,5 +6,7 @@ namespace Task4.UserInteractions
         public void DisplayMessage(string message);
 
         public bool YesNoQuestion(string message);
+
+        public void Clear();
     }
 }

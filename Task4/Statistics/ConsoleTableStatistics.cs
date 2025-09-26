@@ -13,7 +13,7 @@ namespace Task4.Statistics
                  .AddRow("P(actual)", $"{data.WinRateStayedActual:F2}", $"{data.WinRateSwitchedActual:F2}")
                  .AddRow("P(estimated)", $"{data.WinRateStayedEstimated:F2}", $"{data.WinRateSwitchedEstimated:F2}");
 
-                table.Write(Format.Alternative);
+            table.Write(Format.Alternative);
         }
     }
 }

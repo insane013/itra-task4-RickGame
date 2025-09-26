@@ -113,6 +113,8 @@ namespace Task4.GameCore
 
                 this.statisticsDisplayer.DisplayStatistics(this.statistics.GetStatistics());
 
+                Console.ReadKey();
+
                 this.RestartRound();
             }
             else
@@ -163,6 +165,7 @@ namespace Task4.GameCore
         /// </summary>
         private void RestartRound()
         {
+            this.ui!.Clear();
             this.roundGenerations.Clear();
             this.isSwitching = false;
             this.isRickWinner = false;

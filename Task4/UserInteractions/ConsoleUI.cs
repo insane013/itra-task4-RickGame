@@ -50,5 +50,10 @@ namespace Task4.UserInteractions
                 return false;
             }
         }
+
+        public void Clear()
+        {
+            Console.Clear();
+        }
     }
 }
