@@ -1,26 +1,20 @@
-﻿using Task4;
-using Task4.GameCore;
+﻿using Task4.GameCore;
 using Task4.UserInteractions;
+using Task4.Morty;
 
 namespace ClassicMorty;
 
 public class ClassicMorty : BaseMorty
 {
-    public override void HideGunInBox(int boxWithGun)
-    {
-        this.boxWithGun = boxWithGun;
-    }
-
-    public override void SetRickGuess(int rickGuess)
-    {
-        this.rickGuess = rickGuess;
-    }
+    public override float WinRateStayed => 1f / this.boxesCount;
+    public override float WinRateSwitched => (this.boxesCount - 1) / (float)this.boxesCount;
+    private string pathToDialogFile = @"D:\Development projects\ITRA\task4\ClassicMorty\dialogs.json";
 
     public override void Init(IGameContext gameContext, IUserInterface ui, int boxesCount)
     {
-        this.gameContext = gameContext;
-        this.ui = ui;
-        this.boxesCount = boxesCount;
+        base.Init(gameContext, ui, boxesCount);
+
+        this.LoadDialogs(pathToDialogFile);
     }
 
     public override void PlayRound()
@@ -42,22 +36,5 @@ public class ClassicMorty : BaseMorty
         this.gameContext.SwitchingBox(boxesInGame[1]);
 
         this.gameContext.EndRound();
-    }
-    
-    public override int[] PickBoxes(int N, int rickChoice, int gunBox, int mortyNum)
-    {
-        if (rickChoice == gunBox)
-        {
-            var remaining = Enumerable.Range(0, N)
-                                .Where(i => i != rickChoice)
-                                .ToList();
-
-            int secondBox = remaining[mortyNum];
-            return new[] { rickChoice, secondBox };
-        }
-        else
-        {
-            return new[] { rickChoice, gunBox };
-        }
     }
 }

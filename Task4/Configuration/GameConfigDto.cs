@@ -1,3 +1,4 @@
+using Task4.Morty;
 namespace Task4.Configuration
 {
     public class GameConfigDto

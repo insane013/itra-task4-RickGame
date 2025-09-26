@@ -1,3 +1,4 @@
+using Task4.Morty;
 using System.Reflection;
 
 namespace Task4.Configuration

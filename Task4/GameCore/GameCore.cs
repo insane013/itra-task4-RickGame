@@ -1,6 +1,7 @@
 using Task4.UserInteractions;
 using Task4.RandomGenerator;
 using Task4.Configuration;
+using Task4.Statistics;
 
 namespace Task4.GameCore
 {
@@ -8,21 +9,25 @@ namespace Task4.GameCore
     {
         private IRandomNumberService randomNumberService;
         private IUserInterface ui;
+        private IStatisticsDisplayer statisticsDisplayer;
         private GameConfigDto config;
+        private StatisticCollector statistics;
 
         private List<GenerationRevealDTO> roundGenerations = new List<GenerationRevealDTO>();
 
         private int rickInitialGuess;
         private int rickFinalGuess;
         private int boxWithGun;
-
         private bool isSwitching;
+        private bool isRickWinner;
 
-        public GameCore(GameConfigDto config, IRandomNumberService randomNumberService, IUserInterface ui)
+        public GameCore(GameConfigDto config, IRandomNumberService randomNumberService, IUserInterface ui, IStatisticsDisplayer statDisplay)
         {
             this.randomNumberService = randomNumberService;
             this.ui = ui;
             this.config = config;
+            this.statisticsDisplayer = statDisplay;
+            this.statistics = new StatisticCollector(config.MortyInstance);
         }
 
         /// <summary>
@@ -30,12 +35,12 @@ namespace Task4.GameCore
         /// </summary>
         public void StartGame()
         {
-            this.ui.DisplayMessage($"{this.config.MortyInstance.Messages["WELCOME_MESSAGE"]} I hide ur GUN in one of these {this.config.BoxesCount} boxes.");
+            this.ui.DisplayMessage($"{this.config.MortyInstance.Messages.Welcome} I hide ur GUN in one of these {this.config.BoxesCount} boxes.");
 
             this.boxWithGun = this.RequestNumber(this.config.BoxesCount);
             this.config.MortyInstance.HideGunInBox(this.boxWithGun);
 
-            this.ui.DisplayMessage($"{this.config.MortyInstance.Messages["ASK_FOR_GUESS_MESSAGE"]} Your guess [0; {this.config.BoxesCount})?");
+            this.ui.DisplayMessage($"{this.config.MortyInstance.Messages.AskForGuess} Your guess [0; {this.config.BoxesCount})?");
 
             rickInitialGuess = this.ui.GetNumber(this.config.BoxesCount);
 
@@ -49,7 +54,7 @@ namespace Task4.GameCore
         /// <param name="alternativeBox">Box number.</param>
         public void SwitchingBox(int alternativeBox)
         {
-            this.isSwitching = this.ui.YesNoQuestion(this.config.MortyInstance.Messages["SWITCHING_QUESTION"]);
+            this.isSwitching = this.ui.YesNoQuestion(this.config.MortyInstance.Messages.SwitchingQuestion);
 
             if (this.isSwitching)
             {
@@ -117,11 +122,12 @@ namespace Task4.GameCore
 
             if (this.rickFinalGuess == this.boxWithGun)
             {
-                this.ui.DisplayMessage(this.config.MortyInstance.Messages["RICK_WIN_MESSAGE"]);
+                isRickWinner = true;
+                this.ui.DisplayMessage(this.config.MortyInstance.Messages.RickWinner);
             }
             else
             {
-                this.ui.DisplayMessage(this.config.MortyInstance.Messages["RICK_LOSE_MESSAGE"]);
+                this.ui.DisplayMessage(this.config.MortyInstance.Messages.RickLoser);
             }
         }
 
@@ -133,17 +139,25 @@ namespace Task4.GameCore
             this.Reveal();
             this.ComputeResults();
 
-            bool playAgain = this.ui.YesNoQuestion(this.config.MortyInstance.Messages["PLAY_AGAIN_QUESTION"]);
+            this.statistics.RegisterRound(this.isSwitching, this.isRickWinner);
+            
+            bool playAgain = this.ui.YesNoQuestion(this.config.MortyInstance.Messages.PlayAgainQuestion);
 
             if (playAgain)
             {
-                this.RestartRound();
-                return;
-            }
+                this.ui.DisplayMessage(this.config.MortyInstance.Messages.Restart);
 
-            this.ui.DisplayMessage(this.config.MortyInstance.Messages["GOODBYE_MESSAGE"]);
+                this.statisticsDisplayer.DisplayStatistics(this.statistics.GetStatistics());
+
+                this.RestartRound();
+            }
+            else
+            {
+                this.ui.DisplayMessage(this.config.MortyInstance.Messages.Goodbye);
+                this.statisticsDisplayer.DisplayStatistics(this.statistics.GetStatistics());
+            }
         }
-        
+
         /// <summary>
         /// This method is used to restart the game.
         /// </summary>
@@ -151,6 +165,11 @@ namespace Task4.GameCore
         {
             this.roundGenerations.Clear();
             this.isSwitching = false;
+            this.isRickWinner = false;
+            this.rickInitialGuess = -1;
+            this.rickFinalGuess = -1;
+            this.boxWithGun = -1;
+
             this.StartGame();
         }
     }

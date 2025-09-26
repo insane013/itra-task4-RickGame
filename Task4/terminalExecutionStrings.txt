@@ -1,0 +1,2 @@
+dotnet run 3 "D:\Development projects\ITRA\task4\LazyMorty\bin\Debug\net9.0\LazyMorty.dll" ClassicMorty
+dotnet run 3 "D:\Development projects\ITRA\task4\LazyMorty\bin\Debug\net9.0\LazyMorty.dll" LazyMorty

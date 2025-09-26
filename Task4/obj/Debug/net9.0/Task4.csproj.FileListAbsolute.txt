@@ -13,3 +13,6 @@ D:\Development projects\ITRA\task4\Task4\obj\Debug\net9.0\Task4.pdb
 D:\Development projects\ITRA\task4\Task4\obj\Debug\net9.0\Task4.genruntimeconfig.cache
 D:\Development projects\ITRA\task4\Task4\obj\Debug\net9.0\ref\Task4.dll
 D:\Development projects\ITRA\task4\Task4\obj\Debug\net9.0\Task4.sourcelink.json
+D:\Development projects\ITRA\task4\Task4\bin\Debug\net9.0\ConsoleTables.dll
+D:\Development projects\ITRA\task4\Task4\obj\Debug\net9.0\Task4.csproj.AssemblyReference.cache
+D:\Development projects\ITRA\task4\Task4\obj\Debug\net9.0\Task4.csproj.Up2Date

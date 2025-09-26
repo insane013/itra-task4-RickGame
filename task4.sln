@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task4", "Task4\Task4.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassicMorty", "ClassicMorty\ClassicMorty.csproj", "{390F0897-3370-4954-94F9-87F815E30444}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyMorty", "LazyMorty\LazyMorty.csproj", "{2D37E29F-0A88-4CF4-9CC3-AD344AD61165}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{390F0897-3370-4954-94F9-87F815E30444}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{390F0897-3370-4954-94F9-87F815E30444}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{390F0897-3370-4954-94F9-87F815E30444}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D37E29F-0A88-4CF4-9CC3-AD344AD61165}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D37E29F-0A88-4CF4-9CC3-AD344AD61165}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D37E29F-0A88-4CF4-9CC3-AD344AD61165}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D37E29F-0A88-4CF4-9CC3-AD344AD61165}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
