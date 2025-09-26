@@ -12,7 +12,7 @@ namespace Task4.Configuration
             if (args.Length < 2)
             {
                 Console.WriteLine("You need pass boxes count, path to Morty's implementation and Morty's class name as command line arguments!");
-                Console.WriteLine("Class name is optimal, though, if dll name and class name are the same.");
+                Console.WriteLine("Class name is optional, though, if dll name and class name are the same.");
                 Console.WriteLine("Example: Task4.exe 5 C:\\path\\to\\MortyImplementation.dll BestMorty");
                 Console.WriteLine("Remind: first argument is boxes count and should be integer number greater than 2.");
 

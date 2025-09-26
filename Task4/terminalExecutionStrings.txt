@@ -1,2 +1,10 @@
-dotnet run 3 "D:\Development projects\ITRA\task4\LazyMorty\bin\Debug\net9.0\LazyMorty.dll" ClassicMorty
+dotnet run 3 "D:\Development projects\ITRA\task4\ClassicMorty\bin\Debug\net9.0\ClassicMorty.dll" ClassicMorty
 dotnet run 3 "D:\Development projects\ITRA\task4\LazyMorty\bin\Debug\net9.0\LazyMorty.dll" LazyMorty
+
+
+Classic 3 (3 rounds)
+Lazy 3 (3 rounds)
+
+no args:
+only 1 arg = 1
+non-existent Mort

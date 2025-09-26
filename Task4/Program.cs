@@ -9,9 +9,6 @@ if (!GameConfigurator.Configure(args, out GameConfigDto? config)) return;
 
 if (config == null) return;
 
-Console.WriteLine($"Boxes count: {GameConfigurator.BoxesCount}");
-Console.WriteLine($"Morty implementation path: {GameConfigurator.MortyImplementationPath}");
-
 IRandomNumberService randomGenerator = new FairRandomGenerator();
 IUserInterface consoleUI = new ConsoleUI();
 IStatisticsDisplayer statDisplay = new ConsoleTableStatistics();
@@ -21,3 +18,5 @@ GameCore game = new GameCore(config, randomGenerator, consoleUI, statDisplay);
 config.MortyInstance.Init(game, consoleUI, GameConfigurator.BoxesCount);
 
 game.StartGame();
+
+Console.Write("Press any key to close..."); Console.ReadKey();
